@@ -24,6 +24,8 @@ router.post('/', async (req, res) => {
 
 // Login de usuario
 router.post('/login', async (req, res) => {
+  console.log('req.body:', req.body);  // <-- Aquí
+
   try {
     const { correo, contrasena } = req.body;
 
@@ -45,7 +47,7 @@ router.post('/login', async (req, res) => {
 
     res.json({ mensaje: 'Login exitoso', token });
   } catch (error) {
-    console.error('Error en login:', error);  // <-- Aquí el detalle
+    console.error('Error en login:', error);
     res.status(500).json({ error: 'Error al iniciar sesión' });
   }
 });

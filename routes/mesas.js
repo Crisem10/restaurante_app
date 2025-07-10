@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Mesa = require('../models/mesa');
+const autenticarToken = require('../middleware/auth');
 
 // Obtener todas las mesas
-router.get('/', async (req, res) => {
+router.get('/', autenticarToken, async (req, res) => {
   try {
     const mesas = await Mesa.findAll();
     res.json(mesas);
@@ -14,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 // Crear una nueva mesa
-router.post('/', async (req, res) => {
+router.post('/', autenticarToken, async (req, res) => {
   try {
     const nuevaMesa = await Mesa.create(req.body);
     res.status(201).json(nuevaMesa);
@@ -25,7 +26,7 @@ router.post('/', async (req, res) => {
 });
 
 // Obtener una mesa por ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', autenticarToken, async (req, res) => {
   try {
     const mesa = await Mesa.findByPk(req.params.id);
     if (mesa) {
@@ -39,7 +40,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Actualizar una mesa por ID
-router.put('/:id', async (req, res) => {
+router.put('/:id', autenticarToken, async (req, res) => {
   try {
     const mesa = await Mesa.findByPk(req.params.id);
     if (mesa) {
@@ -54,7 +55,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Eliminar una mesa
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', autenticarToken, async (req, res) => {
   try {
     const mesa = await Mesa.findByPk(req.params.id);
     if (mesa) {

@@ -29,6 +29,7 @@ app.use('/mesas', mesaRoutes);
 app.use('/menus', menuRoutes);
 app.use('/pagos', pagoRoutes);
 
+
 // Verificar conexión y arrancar servidor
 async function startServer() {
   try {
