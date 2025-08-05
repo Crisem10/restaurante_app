@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Pago de Reserva</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="pagoForm" (ngSubmit)="realizarPago()">
+    <ion-item>
+      <ion-label position="floating">ID Reserva</ion-label>
+      <ion-input formControlName="reserva_id" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Monto</ion-label>
+      <ion-input formControlName="monto" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input formControlName="telefono" type="tel"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit" [disabled]="loading || pagoForm.invalid">
+      Realizar Pago
+    </ion-button>
+  </form>
+
+  <ion-card *ngIf="estado">
+    <ion-card-header>
+      <ion-card-title>Estado del Pago</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ estado }}</p>
+      <p>{{ mensaje }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

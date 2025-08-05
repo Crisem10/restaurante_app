@@ -1,0 +1,27 @@
+<ion-content class="login-bg">
+  <div class="logo-container">
+    <div class="logo-circle">
+      <img src="assets/icon/logo.png" alt="Logo Restaurante" class="logo-img">
+    </div>
+    <h1 class="lime-title">Crear Cuenta</h1>
+  </div>
+
+  <div class="login-card">
+    <form (ngSubmit)="registrar()" #form="ngForm">
+      <ion-item class="input-item">
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="usuario.nombre" name="nombre" required></ion-input>
+      </ion-item>
+      <ion-item class="input-item">
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input [(ngModel)]="usuario.correo" name="correo" type="email" required></ion-input>
+      </ion-item>
+      <ion-item class="input-item">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input [(ngModel)]="usuario.contrasena" name="contrasena" type="password" required></ion-input>
+      </ion-item>
+      <ion-button expand="full" type="submit" [disabled]="!form.form.valid" class="lime-btn">Registrar</ion-button>
+      <ion-button expand="full" fill="clear" routerLink="/login" class="link-btn">¿Ya tienes cuenta? Inicia sesión</ion-button>
+    </form>
+  </div>
+</ion-content>

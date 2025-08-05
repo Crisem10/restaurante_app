@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mis Reservas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-bg">
+  <ion-spinner *ngIf="loading" name="crescent" class="spinner-center"></ion-spinner>
+
+  <div class="reservas-title">Mis Reservas</div>
+  <div class="reservas-list" *ngIf="!loading && reservas.length > 0; else noReservas">
+    <ion-card class="reserva-card" *ngFor="let reserva of reservas">
+      <ion-card-header>
+        <ion-card-title>
+          <span class="fecha">{{ reserva.fecha }} <span class="hora">{{ reserva.hora }}</span></span>
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="reserva.Usuario" class="usuario-info">
+          <strong>Usuario:</strong> {{ reserva.Usuario.nombre }} <span class="usuario-email">({{ reserva.Usuario.correo }})</span>
+        </div>
+        <div class="mesa-info">
+          <strong>Mesa:</strong> {{ reserva.Mesa?.numero }}
+          <span *ngIf="reserva.Mesa">(Capacidad: {{ reserva.Mesa.capacidad }}, Estado: {{ reserva.Mesa.estado }})</span>
+        </div>
+        <div class="personas-info">Personas: <strong>{{ reserva.personas }}</strong></div>
+        <div class="estado-info">Estado: <span [ngClass]="{'estado-pendiente': reserva.estado === 'Pendiente', 'estado-pagado': reserva.estado === 'Pagado', 'estado-cancelada': reserva.estado === 'Cancelada'}">{{ reserva.estado || 'Pendiente' }}</span></div>
+        <div class="reserva-actions">
+          <ion-button color="success" [routerLink]="['/pago']" [queryParams]="{ reserva_id: reserva.id, monto: reserva.monto }" *ngIf="reserva.estado !== 'Pagado'">
+            Pagar
+          </ion-button>
+          <ion-button color="danger" (click)="cancelarReserva(reserva.id)" *ngIf="reserva.estado !== 'Cancelada'">
+            Cancelar
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ng-template #noReservas>
+    <div class="no-reservas">
+      <p *ngIf="errorMessage">{{ errorMessage }}</p>
+      <p *ngIf="!errorMessage">No tienes reservas registradas.</p>
+    </div>
+  </ng-template>
+</ion-content>
+<main-tab-bar></main-tab-bar>
+
+<style>
+  .spinner-center {
+    display: block;
+    margin: 50% auto;
+  }
+</style>

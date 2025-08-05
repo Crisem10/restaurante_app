@@ -1,0 +1,161 @@
+.container {
+  padding: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.estado-pago {
+  text-align: center;
+  margin: 16px 0;
+}
+
+.instrucciones {
+  margin: 16px 0;
+  
+  ion-label {
+    h3 {
+      margin-top: 0;
+      color: var(--ion-color-primary);
+    }
+    
+    p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.botones-accion {
+  margin-top: 20px;
+  
+  ion-button {
+    margin: 8px 0;
+  }
+}
+
+.info-card {
+  margin-top: 24px;
+  
+  ion-list {
+    background: transparent;
+    
+    ion-item {
+      --background: transparent;
+    }
+  }
+}
+
+// Estilos para el formulario
+ion-item {
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  margin-bottom: 16px;
+}
+
+ion-input, ion-textarea {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  border: 1px solid var(--ion-color-light-shade);
+  border-radius: 8px;
+  margin-top: 8px;
+}
+
+ion-input:focus, ion-textarea:focus {
+  border-color: var(--ion-color-primary);
+}
+
+// Animaciones
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Estilos responsivos
+@media (max-width: 768px) {
+  .container {
+    padding: 12px;
+  }
+  
+  ion-card {
+    margin: 8px 0;
+  }
+}
+
+// Estados de pago
+ion-chip {
+  margin: 8px 0;
+  padding: 8px 16px;
+  
+  ion-icon {
+    margin-right: 8px;
+  }
+}
+
+// Botones personalizados
+ion-button {
+  --border-radius: 12px;
+  height: 48px;
+  font-weight: 600;
+  
+  ion-icon {
+    margin-right: 8px;
+  }
+}
+
+ion-button[color="success"] {
+  --background: #10dc60;
+  --color: white;
+}
+
+ion-button[color="danger"] {
+  --background: #f04141;
+  --color: white;
+}
+
+// Cards con sombra
+ion-card {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 16px 0;
+}
+
+ion-card-header {
+  ion-card-title {
+    display: flex;
+    align-items: center;
+    
+    ion-icon {
+      margin-right: 8px;
+      font-size: 24px;
+    }
+  }
+}
+
+// Efectos hover para botones
+ion-button:hover {
+  transform: translateY(-2px);
+  transition: transform 0.2s ease;
+}
+
+// Indicadores de validación
+.campo-invalido {
+  ion-input, ion-textarea {
+    border-color: var(--ion-color-danger);
+  }
+}
+
+.campo-valido {
+  ion-input, ion-textarea {
+    border-color: var(--ion-color-success);
+  }
+}

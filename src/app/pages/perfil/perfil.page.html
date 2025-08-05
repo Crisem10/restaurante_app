@@ -1,0 +1,60 @@
+
+
+
+
+
+
+<ion-content>
+  <div class="perfil-container">
+    <div *ngIf="!editando">
+      <div class="perfil-avatar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#7ed321" viewBox="0 0 16 16">
+          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm4-3a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/>
+          <path d="M14 14s-1-1.5-6-1.5S2 14 2 14V13a6 6 0 0 1 12 0v1z"/>
+        </svg>
+      </div>
+      <p class="perfil-email" style="margin-bottom: 0; margin-top: 10px;">
+        <strong>Correo:</strong> {{ usuario?.correo ? usuario.correo : '' }}
+      </p>
+      <div class="perfil-actions">
+        <button class="perfil-action-btn" (click)="verPagos()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#7ed321" class="bi bi-credit-card" viewBox="0 0 16 16">
+            <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 3H1v6a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6z"/>
+          </svg>
+          Mis pagos
+        </button>
+        <button class="perfil-action-btn" (click)="editarPerfil()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#7ed321" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-9.193 9.193a.5.5 0 0 1-.168.11l-4 1.5a.5.5 0 0 1-.65-.65l1.5-4a.5.5 0 0 1 .11-.168l9.193-9.193zm1.415 2.122L13 2.293 13.707 3l.561-.561a.5.5 0 0 0-.707-.707zm-1.768.768L2.5 12.293V13h.707l8.293-8.293-1.707-1.707zm-8.647 9.647l-.646.646a.5.5 0 0 0 .707.707l.646-.646-.707-.707z"/>
+          </svg>
+          Editar perfil
+        </button>
+        <button class="cerrar-sesion-btn" (click)="logout()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="#fff" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M6 3a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-1a.5.5 0 0 1 1 0v1h5V3H7v1a.5.5 0 0 1-1 0V3zm.146 4.146a.5.5 0 0 1 .708 0L9 9.293V5.5a.5.5 0 0 1 1 0v3.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
+          </svg>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+    <form *ngIf="editando" (ngSubmit)="guardarEdicion()" style="width:100%;max-width:320px;">
+      <ion-list>
+        <ion-item>
+          <ion-label position="stacked">Nombre</ion-label>
+          <ion-input [(ngModel)]="usuario.nombre" name="nombre" type="text" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Correo</ion-label>
+          <ion-input [(ngModel)]="usuario.correo" name="correo" type="email" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Contraseña (solo si deseas cambiarla)</ion-label>
+          <ion-input [(ngModel)]="usuario.contrasena" name="contrasena" type="password" autocomplete="new-password" placeholder="Nueva contraseña"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" type="submit" color="success">Guardar</ion-button>
+      <ion-button expand="block" type="button" color="medium" (click)="editando=false">Cancelar</ion-button>
+    </form>
+  </div>
+</ion-content>
+<main-tab-bar></main-tab-bar>

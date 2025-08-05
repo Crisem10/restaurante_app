@@ -1,0 +1,46 @@
+<!-- Página de reservas (renombrada) -->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Reservar Mesa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="reservaForm" (ngSubmit)="enviarReserva()">
+    <ion-item>
+      <ion-label position="floating">Fecha</ion-label>
+      <ion-datetime presentation="date" formControlName="fecha"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Hora</ion-label>
+      <ion-input type="time" formControlName="hora"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nº Personas</ion-label>
+      <ion-input type="number" formControlName="personas"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Preferencias</ion-label>
+      <ion-input formControlName="preferencias_asiento"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Mesa disponible</ion-label>
+      <ion-select formControlName="mesa_id" interface="popover" placeholder="Selecciona una mesa">
+        <ion-select-option *ngFor="let mesa of mesasDisponibles" [value]="mesa.id">
+          Nº {{ mesa.numero }} (Capacidad: {{ mesa.capacidad }})
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="block" type="submit" [disabled]="reservaForm.invalid" color="primary">
+      Confirmar Reserva
+    </ion-button>
+    
+    <!-- Botón de debug adicional -->
+    <ion-button expand="block" fill="outline" color="secondary" (click)="debugFormulario()">
+      🔍 Debug Formulario
+    </ion-button>
+  </form>
+</ion-content>
