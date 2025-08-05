@@ -29,7 +29,7 @@ const Usuario = sequelize.define('Usuario', {
   },
 }, {
   tableName: 'usuarios',
-  schema: 'restaurante',
+  schema: 'public', // Cambiado para Supabase
   timestamps: false,
 });
 

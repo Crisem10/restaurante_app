@@ -1,46 +1,191 @@
-<!-- Página de reservas (renombrada) -->
-<ion-header>
+<!-- Página de reservas mejorada -->
+<ion-header class="ion-no-border">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-back-button defaultHref="/home" color="light"></ion-back-button>
     </ion-buttons>
-    <ion-title>Reservar Mesa</ion-title>
+    <ion-title class="title-center">
+      <ion-icon name="restaurant-outline" class="header-icon"></ion-icon>
+      Reservar Mesa
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <form [formGroup]="reservaForm" (ngSubmit)="enviarReserva()">
-    <ion-item>
-      <ion-label position="floating">Fecha</ion-label>
-      <ion-datetime presentation="date" formControlName="fecha"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Hora</ion-label>
-      <ion-input type="time" formControlName="hora"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Nº Personas</ion-label>
-      <ion-input type="number" formControlName="personas"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Preferencias</ion-label>
-      <ion-input formControlName="preferencias_asiento"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="floating">Mesa disponible</ion-label>
-      <ion-select formControlName="mesa_id" interface="popover" placeholder="Selecciona una mesa">
-        <ion-select-option *ngFor="let mesa of mesasDisponibles" [value]="mesa.id">
-          Nº {{ mesa.numero }} (Capacidad: {{ mesa.capacidad }})
-        </ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-button expand="block" type="submit" [disabled]="reservaForm.invalid" color="primary">
-      Confirmar Reserva
-    </ion-button>
-    
-    <!-- Botón de debug adicional -->
-    <ion-button expand="block" fill="outline" color="secondary" (click)="debugFormulario()">
-      🔍 Debug Formulario
-    </ion-button>
-  </form>
+<ion-content class="reservation-content">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h2>¡Reserva tu experiencia!</h2>
+      <p>Asegura tu lugar en nuestro restaurante</p>
+    </div>
+  </div>
+
+  <!-- Formulario de reserva -->
+  <div class="form-container">
+    <form [formGroup]="reservaForm" (ngSubmit)="enviarReserva()">
+      
+      <!-- Sección de Fecha y Hora -->
+      <div class="form-section">
+        <h3 class="section-title">
+          <ion-icon name="calendar-outline"></ion-icon>
+          Fecha y Hora
+        </h3>
+        
+        <div class="datetime-container">
+          <ion-item class="custom-item">
+            <ion-label position="stacked" class="custom-label">
+              <ion-icon name="calendar"></ion-icon>
+              Fecha de reserva
+            </ion-label>
+            <ion-datetime 
+              presentation="date" 
+              formControlName="fecha"
+              [min]="fechaMinima"
+              [max]="fechaMaxima"
+              class="custom-datetime">
+            </ion-datetime>
+          </ion-item>
+
+          <ion-item class="custom-item">
+            <ion-label position="stacked" class="custom-label">
+              <ion-icon name="time"></ion-icon>
+              Hora de reserva
+            </ion-label>
+            <ion-datetime 
+              presentation="time" 
+              formControlName="hora"
+              class="custom-datetime">
+            </ion-datetime>
+          </ion-item>
+        </div>
+      </div>
+
+      <!-- Sección de Comensales -->
+      <div class="form-section">
+        <h3 class="section-title">
+          <ion-icon name="people-outline"></ion-icon>
+          Comensales
+        </h3>
+        
+        <div class="personas-selector">
+          <ion-label class="personas-label">Número de personas</ion-label>
+          <div class="personas-controls">
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              (click)="decrementarPersonas()"
+              [disabled]="reservaForm.get('personas')?.value <= 1">
+              <ion-icon name="remove-circle"></ion-icon>
+            </ion-button>
+            <span class="personas-count">{{ reservaForm.get('personas')?.value }}</span>
+            <ion-button 
+              fill="clear" 
+              size="small" 
+              (click)="incrementarPersonas()"
+              [disabled]="reservaForm.get('personas')?.value >= 8">
+              <ion-icon name="add-circle"></ion-icon>
+            </ion-button>
+          </div>
+          
+          <!-- Debug temporal -->
+          <div style="margin-top: 10px; padding: 8px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
+            <strong>Debug:</strong> Personas = {{ reservaForm.get('personas')?.value }} | 
+            Mesas filtradas = {{ mesasFiltradas.length }} | 
+            <ion-button fill="clear" size="small" (click)="debugFormulario()">🔍 Debug</ion-button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de Mesas Disponibles -->
+      <div class="form-section" *ngIf="mesasDisponibles.length > 0">
+        <h3 class="section-title">
+          <ion-icon name="grid-outline"></ion-icon>
+          Mesas Disponibles
+        </h3>
+        
+        <div class="mesas-grid">
+          <div 
+            *ngFor="let mesa of mesasFiltradas" 
+            class="mesa-card"
+            [class.selected]="reservaForm.get('mesa_id')?.value === mesa.id"
+            (click)="seleccionarMesa(mesa)">
+            <div class="mesa-number">Mesa {{ mesa.numero }}</div>
+            <div class="mesa-capacity">
+              <ion-icon name="people"></ion-icon>
+              {{ mesa.capacidad }} personas
+            </div>
+            <div class="mesa-status">
+              <ion-icon name="checkmark-circle" color="success"></ion-icon>
+              Disponible
+            </div>
+          </div>
+        </div>
+        
+        <div *ngIf="mesasFiltradas.length === 0" class="no-mesas">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <p>No hay mesas disponibles para {{ reservaForm.get('personas')?.value }} personas</p>
+          <small>Intenta con un número diferente de comensales</small>
+        </div>
+      </div>
+
+      <!-- Sección de Preferencias -->
+      <div class="form-section">
+        <h3 class="section-title">
+          <ion-icon name="chatbubble-outline"></ion-icon>
+          Preferencias (Opcional)
+        </h3>
+        
+        <ion-item class="custom-item">
+          <ion-label position="stacked" class="custom-label">
+            Comentarios especiales
+          </ion-label>
+          <ion-textarea 
+            formControlName="preferencias_asiento"
+            placeholder="Ej: Vista a la ventana, cerca de la entrada, celebración especial..."
+            rows="3"
+            class="custom-textarea">
+          </ion-textarea>
+        </ion-item>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="action-buttons">
+        <ion-button 
+          expand="block" 
+          type="submit" 
+          [disabled]="reservaForm.invalid" 
+          color="primary"
+          class="confirm-button">
+          <ion-icon name="checkmark-circle" slot="start"></ion-icon>
+          Confirmar Reserva
+        </ion-button>
+        
+        <ion-button 
+          expand="block" 
+          fill="outline" 
+          color="medium"
+          (click)="limpiarFormulario()"
+          class="clear-button">
+          <ion-icon name="refresh" slot="start"></ion-icon>
+          Limpiar Formulario
+        </ion-button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer info -->
+  <div class="footer-info">
+    <ion-card class="info-card">
+      <ion-card-content>
+        <div class="info-item">
+          <ion-icon name="time-outline" color="primary"></ion-icon>
+          <span>Horario: 12:00 PM - 10:00 PM</span>
+        </div>
+        <div class="info-item">
+          <ion-icon name="call-outline" color="primary"></ion-icon>
+          <span>¿Dudas? Llámanos al (02) 123-4567</span>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

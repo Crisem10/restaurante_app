@@ -8,7 +8,7 @@ const Mesa = sequelize.define('Mesa', {
     autoIncrement: true,
   },
   numero: {
-    type: DataTypes.STRING(10),
+    type: DataTypes.INTEGER,
     allowNull: false,
     unique: true,
   },
@@ -17,13 +17,13 @@ const Mesa = sequelize.define('Mesa', {
     allowNull: false,
   },
   estado: {
-    type: DataTypes.STRING(20),
+    type: DataTypes.STRING,
     defaultValue: 'disponible',
   },
 }, {
   tableName: 'mesas',
-  schema: 'restaurante',
-  timestamps: false,
+  schema: 'public',
+  timestamps: true,
 });
 
 // No changes necesarios aquí para mostrar los datos de la mesa en reservas.

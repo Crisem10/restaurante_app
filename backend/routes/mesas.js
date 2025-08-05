@@ -2,15 +2,41 @@ const express = require('express');
 const router = express.Router();
 const Mesa = require('../models/mesa');
 const autenticarToken = require('../middleware/auth');
+const sequelize = require('../db');
 
-// Obtener solo las mesas disponibles
+// Obtener solo las mesas disponibles (usando SQL directo para evitar problemas de modelo)
 router.get('/disponibles', autenticarToken, async (req, res) => {
   try {
-    const mesas = await Mesa.findAll({ where: { estado: 'disponible' } });
+    console.log('🔍 Obteniendo mesas disponibles con SQL directo...');
+    
+    // Usar SQL directo para evitar problemas con el modelo
+    const [mesas] = await sequelize.query(`
+      SELECT id, numero, capacidad, estado 
+      FROM mesas 
+      WHERE estado = 'disponible' 
+      ORDER BY numero ASC
+    `);
+    
+    console.log(`📊 Mesas disponibles encontradas: ${mesas.length}`);
+    mesas.forEach(mesa => {
+      console.log(`- Mesa ${mesa.numero}: ${mesa.capacidad} personas (ID: ${mesa.id})`);
+    });
+    
     res.json(mesas);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al obtener mesas disponibles' });
+    console.error('❌ Error completo al obtener mesas disponibles:', error);
+    res.status(500).json({ error: 'Error al obtener mesas disponibles', details: error.message });
+  }
+});
+
+// Ruta de prueba simple
+router.get('/test', async (req, res) => {
+  try {
+    console.log('🧪 Ruta de prueba llamada');
+    res.json({ message: 'Ruta de mesas funcionando', timestamp: new Date() });
+  } catch (error) {
+    console.error('Error en ruta de prueba:', error);
+    res.status(500).json({ error: 'Error en prueba' });
   }
 });
 

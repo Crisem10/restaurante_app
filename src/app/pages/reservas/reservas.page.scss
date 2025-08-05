@@ -1,3 +1,558 @@
-/* Estilos para la página de reservas */
+/* Estilos mejorados para la página de reservas con soporte para tema oscuro/claro */
 
-/* ...existing code from reservar.page.scss... */
+// Importar variables de tema
+@import '../../../theme/variables.scss';
+
+// Variables de colores para tema claro
+:root {
+  --primary-gradient: linear-gradient(135deg, var(--color-lime) 0%, #5bb318 100%);
+  --secondary-gradient: linear-gradient(135deg, var(--color-orange) 0%, #e55a0f 100%);
+  --success-color: var(--color-lime);
+  --warning-color: var(--color-yellow);
+  --accent-color: var(--color-orange);
+  --text-dark: var(--color-black);
+  --text-medium: #718096;
+  --background-light: #f8faf9;
+  --background-card: var(--color-white);
+  --background-item: #f8fff9;
+  --background-hero: var(--primary-gradient);
+  --border-color: rgba(126, 211, 33, 0.2);
+  --border-color-light: #e2e8f0;
+  --shadow-light: rgba(126, 211, 33, 0.15);
+  --shadow-card: rgba(126, 211, 33, 0.08);
+  --card-shadow: 0 4px 15px rgba(126, 211, 33, 0.15);
+  --border-radius: 12px;
+}
+
+// Variables de colores para tema oscuro
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text-dark: #f7fafc;
+    --text-medium: #a0aec0;
+    --background-light: #1a202c;
+    --background-card: #2d3748;
+    --background-item: rgba(126, 211, 33, 0.1);
+    --background-hero: linear-gradient(135deg, rgba(126, 211, 33, 0.9) 0%, rgba(91, 179, 24, 0.9) 100%);
+    --border-color: rgba(126, 211, 33, 0.3);
+    --border-color-light: #4a5568;
+    --shadow-light: rgba(0, 0, 0, 0.3);
+    --shadow-card: rgba(0, 0, 0, 0.2);
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// Soporte para tema oscuro forzado por clase CSS
+.dark {
+  --text-dark: #f7fafc;
+  --text-medium: #a0aec0;
+  --background-light: #1a202c;
+  --background-card: #2d3748;
+  --background-item: rgba(126, 211, 33, 0.1);
+  --background-hero: linear-gradient(135deg, rgba(126, 211, 33, 0.9) 0%, rgba(91, 179, 24, 0.9) 100%);
+  --border-color: rgba(126, 211, 33, 0.3);
+  --border-color-light: #4a5568;
+  --shadow-light: rgba(0, 0, 0, 0.3);
+  --shadow-card: rgba(0, 0, 0, 0.2);
+  --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+// Header personalizado
+ion-header {
+  .title-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--color-white);
+    
+    .header-icon {
+      margin-right: 8px;
+      font-size: 1.2em;
+    }
+  }
+  
+  ion-toolbar {
+    --background: var(--primary-gradient);
+  }
+}
+
+// Contenido principal
+.reservation-content {
+  --background: var(--background-light);
+  
+  // Sección hero
+  .hero-section {
+    background: var(--background-hero);
+    padding: 24px 20px;
+    text-align: center;
+    color: var(--color-white);
+    position: relative;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 4px;
+      background: var(--color-white);
+      border-radius: 2px;
+      opacity: 0.8;
+    }
+    
+    .hero-content {
+      h2 {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        color: var(--color-white);
+      }
+      
+      p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 0.95rem;
+        color: var(--color-white);
+      }
+    }
+  }
+  
+  // Contenedor del formulario
+  .form-container {
+    padding: 30px 20px 20px;
+    margin-top: -10px;
+    background: var(--background-card);
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    z-index: 1;
+    
+    // Secciones del formulario
+    .form-section {
+      margin-bottom: 32px;
+      
+      .section-title {
+        display: flex;
+        align-items: center;
+        color: var(--text-dark);
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        
+        ion-icon {
+          margin-right: 8px;
+          font-size: 1.2em;
+          color: var(--color-lime);
+        }
+      }
+    }
+    
+    // Contenedor de fecha y hora
+    .datetime-container {
+      display: grid;
+      gap: 12px;
+      
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    
+    // Items personalizados
+    .custom-item {
+      --background: var(--background-item);
+      --border-color: var(--border-color);
+      --border-width: 1px;
+      --border-style: solid;
+      --border-radius: var(--border-radius);
+      --color: var(--text-dark);
+      border-radius: var(--border-radius);
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px var(--shadow-card);
+      transition: all 0.3s ease;
+      
+      &:hover, &:focus-within {
+        --border-color: var(--color-lime);
+        box-shadow: 0 4px 16px var(--shadow-light);
+      }
+      
+      .custom-label {
+        display: flex;
+        align-items: center;
+        color: var(--text-dark);
+        font-weight: 500;
+        margin-bottom: 8px;
+        
+        ion-icon {
+          margin-right: 6px;
+          font-size: 0.9em;
+          color: var(--color-lime);
+        }
+      }
+      
+      .custom-datetime {
+        --color: var(--text-dark);
+        --placeholder-color: var(--text-medium);
+      }
+      
+      .custom-textarea {
+        --background: transparent;
+        --color: var(--text-dark);
+        --placeholder-color: var(--text-medium);
+      }
+    }
+    
+    // Selector de personas
+    .personas-selector {
+      background: var(--background-item);
+      border: 1px solid var(--border-color);
+      border-radius: var(--border-radius);
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px var(--shadow-card);
+      
+      .personas-label {
+        display: block;
+        color: var(--text-dark);
+        font-weight: 500;
+        margin-bottom: 16px;
+      }
+      
+      .personas-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        
+        ion-button {
+          --color: var(--color-lime);
+          --color-hover: #5bb318;
+          --size: 44px;
+          
+          ion-icon {
+            font-size: 1.5em;
+          }
+          
+          &[disabled] {
+            --color: var(--text-medium);
+          }
+        }
+        
+        .personas-count {
+          font-size: 2rem;
+          font-weight: 700;
+          color: var(--color-lime);
+          min-width: 60px;
+          background: var(--background-card);
+          border: 2px solid var(--color-lime);
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px var(--shadow-light);
+        }
+      }
+    }
+    
+    // Grid de mesas
+    .mesas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+      
+      .mesa-card {
+        background: var(--background-card);
+        border: 2px solid var(--border-color-light);
+        border-radius: var(--border-radius);
+        padding: 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px var(--shadow-card);
+        
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 16px var(--shadow-light);
+          border-color: var(--color-lime);
+        }
+        
+        &.selected {
+          border-color: var(--color-lime);
+          background: var(--background-item);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 16px var(--shadow-light);
+          
+          .mesa-number {
+            color: var(--color-lime);
+          }
+        }
+        
+        .mesa-number {
+          font-size: 1.1rem;
+          font-weight: 700;
+          margin-bottom: 8px;
+          color: var(--text-dark);
+        }
+        
+        .mesa-capacity {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          color: var(--text-medium);
+          font-size: 0.9rem;
+          margin-bottom: 8px;
+          
+          ion-icon {
+            font-size: 0.9em;
+          }
+        }
+        
+        .mesa-status {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          color: var(--color-lime);
+          
+          ion-icon {
+            font-size: 1em;
+          }
+        }
+      }
+    }
+    
+    // Mensaje cuando no hay mesas
+    .no-mesas {
+      text-align: center;
+      padding: 32px 20px;
+      color: var(--text-medium);
+      background: var(--background-item);
+      border-radius: var(--border-radius);
+      border: 1px dashed var(--border-color-light);
+      
+      ion-icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+        opacity: 0.6;
+        color: var(--color-orange);
+      }
+      
+      p {
+        font-size: 1rem;
+        margin-bottom: 8px;
+        color: var(--text-dark);
+      }
+      
+      small {
+        font-size: 0.85rem;
+        opacity: 0.8;
+        color: var(--text-medium);
+      }
+    }
+    
+    // Botones de acción
+    .action-buttons {
+      margin-top: 32px;
+      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      
+      .confirm-button {
+        --background: var(--primary-gradient);
+        --color: var(--color-white);
+        --border-radius: var(--border-radius);
+        height: 52px;
+        font-weight: 600;
+        box-shadow: 0 4px 16px var(--shadow-light);
+        
+        &:not([disabled]):hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px var(--shadow-light);
+        }
+        
+        &[disabled] {
+          --background: var(--border-color-light);
+          --color: var(--text-medium);
+          box-shadow: none;
+        }
+      }
+      
+      .clear-button {
+        --border-color: var(--border-color-light);
+        --color: var(--text-medium);
+        height: 44px;
+        font-weight: 500;
+        
+        &:hover {
+          --border-color: var(--color-orange);
+          --color: var(--color-orange);
+        }
+      }
+    }
+  }
+  
+  // Footer informativo
+  .footer-info {
+    padding: 0 20px 20px;
+    
+    .info-card {
+      margin: 0;
+      box-shadow: var(--card-shadow);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--border-color);
+      background: var(--background-card);
+      
+      ion-card-content {
+        padding: 16px;
+        
+        .info-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          margin-bottom: 12px;
+          
+          &:last-child {
+            margin-bottom: 0;
+          }
+          
+          ion-icon {
+            font-size: 1.1em;
+            flex-shrink: 0;
+            color: var(--color-lime);
+          }
+          
+          span {
+            font-size: 0.9rem;
+            color: var(--text-dark);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animaciones
+@keyframes slideInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.form-section {
+  animation: slideInUp 0.5s ease-out;
+  
+  &:nth-child(2) { animation-delay: 0.1s; }
+  &:nth-child(3) { animation-delay: 0.2s; }
+  &:nth-child(4) { animation-delay: 0.3s; }
+  &:nth-child(5) { animation-delay: 0.4s; }
+}
+
+.mesa-card {
+  animation: fadeInScale 0.3s ease-out;
+}
+
+// Responsive
+@media (max-width: 576px) {
+  .form-container {
+    padding: 20px 16px 16px;
+    
+    .mesas-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 8px;
+    }
+    
+    .personas-selector {
+      padding: 16px;
+    }
+  }
+  
+  .hero-section {
+    padding: 20px 16px;
+    
+    .hero-content h2 {
+      font-size: 1.3rem;
+    }
+  }
+}
+
+// Estados de validación usando colores de la app
+.custom-item {
+  &.item-has-error {
+    --border-color: var(--color-orange);
+    --background: rgba(255, 111, 27, 0.1);
+  }
+  
+  &.item-has-success {
+    --border-color: var(--color-lime);
+    --background: var(--background-item);
+  }
+}
+
+// Mejoras específicas para tema oscuro
+@media (prefers-color-scheme: dark) {
+  .reservation-content {
+    .hero-section {
+      background: var(--background-hero);
+      
+      .hero-content {
+        h2, p {
+          color: var(--color-white);
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+    
+    .form-container {
+      .custom-item {
+        ion-input, ion-textarea, ion-datetime, ion-select {
+          --color: var(--text-dark);
+        }
+      }
+    }
+  }
+}
+
+// Clase dark para forzar tema oscuro
+.dark .reservation-content {
+  .hero-section {
+    background: var(--background-hero);
+    
+    .hero-content {
+      h2, p {
+        color: var(--color-white);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+  
+  .form-container {
+    .custom-item {
+      ion-input, ion-textarea, ion-datetime, ion-select {
+        --color: var(--text-dark);
+      }
+    }
+  }
+}

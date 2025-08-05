@@ -37,14 +37,14 @@ app.use(morgan('dev'));
 // Servir archivos estáticos de imágenes
 app.use('/images', express.static(__dirname + '/public/images'));
 
-// Rutas
-app.use('/usuarios', usuariosRoutes);
-app.use('/reservas', reservaRoutes);
-app.use('/mesas', mesaRoutes);
-app.use('/pagos', pagoRoutes);
+// Rutas con prefijo /api
+app.use('/api/usuarios', usuariosRoutes);
+app.use('/api/reservas', reservaRoutes);
+app.use('/api/mesas', mesaRoutes);
+app.use('/api/pagos', pagoRoutes);
 // Rutas protegidas para admin
-app.use('/menus/admin', autenticarToken, esAdmin, menuRoutes); // rutas de gestión admin
-app.use('/menus', menuRoutes); // Rutas públicas de menú
+app.use('/api/menus/admin', autenticarToken, esAdmin, menuRoutes); // rutas de gestión admin
+app.use('/api/menus', menuRoutes); // Rutas públicas de menú
 
 // Manejo global de errores
 app.use((err, req, res, next) => {

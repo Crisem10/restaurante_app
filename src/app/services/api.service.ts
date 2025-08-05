@@ -12,37 +12,37 @@ export class ApiService {
 
   // Métodos de autenticación
   registrarUsuario(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/usuarios`, data);
+    return this.http.post(`${this.baseUrl}/api/usuarios`, data);
   }
 
   iniciarSesion(data: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/usuarios/login`, data);
+    return this.http.post(`${this.baseUrl}/api/usuarios/login`, data);
   }
 
   // Métodos de usuario
   getUsuario(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(`${this.baseUrl}/usuarios/perfil`, {
+    return this.http.get(`${this.baseUrl}/api/usuarios/perfil`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
 
   // Métodos de menú
   obtenerMenu(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/menus`);
+    return this.http.get(`${this.baseUrl}/api/menus`);
   }
 
   // Métodos de mesas
   obtenerMesas(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(`${this.baseUrl}/mesas`, {
+    return this.http.get(`${this.baseUrl}/api/mesas`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
 
   obtenerMesasDisponibles(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(`${this.baseUrl}/mesas/disponibles`, {
+    return this.http.get(`${this.baseUrl}/api/mesas/disponibles`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
@@ -50,28 +50,28 @@ export class ApiService {
   // Métodos de reservas
   crearReserva(data: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(`${this.baseUrl}/reservas`, data, {
+    return this.http.post(`${this.baseUrl}/api/reservas`, data, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
 
   obtenerReservasUsuario(usuarioId: number): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(`${this.baseUrl}/reservas/usuario/${usuarioId}`, {
+    return this.http.get(`${this.baseUrl}/api/reservas/usuario/${usuarioId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
 
   obtenerTodasReservas(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(`${this.baseUrl}/reservas`, {
+    return this.http.get(`${this.baseUrl}/api/reservas`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
 
   cancelarReserva(reservaId: number): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.delete(`${this.baseUrl}/reservas/cancelar/${reservaId}`, {
+    return this.http.delete(`${this.baseUrl}/api/reservas/cancelar/${reservaId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
@@ -79,21 +79,21 @@ export class ApiService {
   // Métodos de pagos
   crearPagoPayphone(data: any): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(`${this.baseUrl}/pagos/payphone/crear`, data, {
+    return this.http.post(`${this.baseUrl}/api/pagos/payphone/crear`, data, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
 
   verificarEstadoPago(transactionId: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(`${this.baseUrl}/pagos/payphone/verificar/${transactionId}`, {
+    return this.http.get(`${this.baseUrl}/api/pagos/payphone/verificar/${transactionId}`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }
 
   confirmarPago(transactionId: string, confirmacion: boolean): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(`${this.baseUrl}/pagos/payphone/confirmar/${transactionId}`, 
+    return this.http.post(`${this.baseUrl}/api/pagos/payphone/confirmar/${transactionId}`, 
       { confirmacion }, 
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -101,7 +101,7 @@ export class ApiService {
 
   obtenerMisPagos(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(`${this.baseUrl}/pagos/mis`, {
+    return this.http.get(`${this.baseUrl}/api/pagos/mis`, {
       headers: { Authorization: `Bearer ${token}` }
     });
   }

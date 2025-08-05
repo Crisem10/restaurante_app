@@ -7,6 +7,22 @@ const jwt = require('jsonwebtoken');
 const autenticarToken = require('../middleware/auth');
 const esAdmin = require('../middleware/admin');
 
+// ENDPOINT DE DEBUG - Verificar usuarios en DB
+router.get('/debug/all', async (req, res) => {
+  try {
+    const usuarios = await Usuario.findAll({
+      attributes: ['id', 'nombre', 'correo', 'rol']
+    });
+    res.json({
+      total: usuarios.length,
+      usuarios: usuarios
+    });
+  } catch (error) {
+    console.error('Error en debug:', error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Obtener datos del usuario autenticado
 router.get('/me', autenticarToken, async (req, res) => {
   try {

@@ -46,7 +46,7 @@ const Reserva = sequelize.define('Reserva', {
   },
 }, {
   tableName: 'reservas',
-  schema: 'restaurante',
+  schema: 'public',
   timestamps: false,
 });
 

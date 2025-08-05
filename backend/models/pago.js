@@ -44,7 +44,7 @@ const Pago = sequelize.define('Pago', {
   },
 }, {
   tableName: 'pagos',
-  schema: 'restaurante',
+  schema: 'public',
   timestamps: false,
 });
 

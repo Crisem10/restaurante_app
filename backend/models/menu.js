@@ -30,7 +30,7 @@ const Menu = sequelize.define('Menu', {
   },
 }, {
   tableName: 'menu',
-  schema: 'restaurante',
+  schema: 'public',
   timestamps: false,
 });
 
