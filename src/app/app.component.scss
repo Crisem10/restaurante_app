@@ -1,0 +1,116 @@
+// Estilos globales de la aplicación con tema del menú del restaurante
+
+// Aplicar fondo global
+ion-app {
+  background: var(--background-primary);
+}
+
+// Estilos globales para ion-content
+ion-content {
+  --background: var(--background-primary);
+  --color: var(--text-primary);
+}
+
+// Estilos globales para botones
+ion-button {
+  &[color="primary"] {
+    --background: var(--primary-gradient);
+    --color: var(--text-white);
+    --border-radius: var(--border-radius);
+    font-weight: 600;
+    box-shadow: var(--shadow-primary);
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(126, 211, 33, 0.3);
+    }
+  }
+
+  &[color="secondary"] {
+    --background: var(--secondary-gradient);
+    --color: var(--text-white);
+    --border-radius: var(--border-radius);
+    font-weight: 600;
+    box-shadow: var(--shadow-secondary);
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(255, 107, 53, 0.3);
+    }
+  }
+
+  &[fill="outline"] {
+    --border-color: var(--border-primary);
+    --color: var(--menu-green-primary);
+    --border-radius: var(--border-radius);
+    
+    &:hover {
+      --background: var(--background-item);
+    }
+  }
+}
+
+// Estilos globales para cards
+ion-card {
+  --background: var(--background-card);
+  --color: var(--text-primary);
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-card);
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-primary);
+  }
+}
+
+// Estilos globales para headers
+ion-header {
+  ion-toolbar {
+    --background: var(--primary-gradient);
+    --color: var(--text-white);
+    
+    ion-title {
+      font-weight: 600;
+    }
+    
+    ion-button {
+      --color: var(--text-white);
+    }
+  }
+}
+
+// Estilos globales para items
+ion-item {
+  --background: var(--background-card);
+  --color: var(--text-primary);
+  --border-color: var(--border-light);
+  --inner-border-width: 1px;
+  border-radius: var(--border-radius);
+  margin-bottom: 8px;
+  
+  &:hover {
+    --border-color: var(--border-primary);
+  }
+}
+
+// Estilos globales para inputs
+ion-input, ion-textarea, ion-select, ion-datetime {
+  --background: var(--background-card);
+  --color: var(--text-primary);
+  --placeholder-color: var(--text-secondary);
+}
+
+// Tabs personalizados si los hay
+ion-tab-bar {
+  --background: var(--background-card);
+  --color: var(--text-secondary);
+  
+  ion-tab-button {
+    --color: var(--text-secondary);
+    --color-selected: var(--menu-orange-primary);
+    
+    &.tab-selected {
+      --color: var(--menu-orange-primary);
+    }
+  }
+}

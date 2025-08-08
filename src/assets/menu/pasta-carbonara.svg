@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <defs>
+    <linearGradient id="pastaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5DEB3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DEB887;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="#FAF8F3"/>
+  
+  <!-- Plate -->
+  <ellipse cx="150" cy="130" rx="100" ry="40" fill="#f8f8f8" stroke="#ddd" stroke-width="2"/>
+  
+  <!-- Pasta strands -->
+  <path d="M70 110 Q90 100 110 110 Q130 120 150 110 Q170 100 190 110 Q210 120 230 110" 
+        stroke="url(#pastaGrad)" stroke-width="8" fill="none"/>
+  <path d="M80 120 Q100 110 120 120 Q140 130 160 120 Q180 110 200 120 Q220 130 240 120" 
+        stroke="url(#pastaGrad)" stroke-width="8" fill="none"/>
+  <path d="M75 130 Q95 120 115 130 Q135 140 155 130 Q175 120 195 130 Q215 140 235 130" 
+        stroke="url(#pastaGrad)" stroke-width="8" fill="none"/>
+  
+  <!-- Bacon pieces -->
+  <rect x="120" y="115" width="12" height="6" rx="3" fill="#8B4513"/>
+  <rect x="160" y="125" width="10" height="5" rx="2" fill="#8B4513"/>
+  <rect x="180" y="118" width="8" height="4" rx="2" fill="#8B4513"/>
+  
+  <!-- Cheese -->
+  <circle cx="140" cy="125" r="6" fill="#FFD700" opacity="0.8"/>
+  <circle cx="170" cy="115" r="5" fill="#FFD700" opacity="0.8"/>
+  
+  <!-- Pepper specks -->
+  <circle cx="130" cy="120" r="1" fill="#333"/>
+  <circle cx="165" cy="130" r="1" fill="#333"/>
+  <circle cx="155" cy="115" r="1" fill="#333"/>
+  
+  <!-- Text -->
+  <text x="150" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2C2C2C">Pasta Carbonara</text>
+</svg>

@@ -5,11 +5,12 @@ import { IonicModule, ToastController, LoadingController, AlertController } from
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { MainTabBarComponent } from '../../components/main-tab-bar.component';
 
 @Component({
   selector: 'app-reservas',
   standalone: true,
-  imports: [IonicModule, ReactiveFormsModule, CommonModule],
+  imports: [IonicModule, ReactiveFormsModule, CommonModule, MainTabBarComponent],
   templateUrl: './reservas.page.html',
   styleUrls: ['./reservas.page.scss']
 })
@@ -43,6 +44,9 @@ export class ReservasPage implements OnInit {
       preferencias_asiento: [''],
       mesa_id: ['', Validators.required]
     });
+
+    // Log inicial para verificar el valor
+    console.log('🔄 Valor inicial de personas:', this.reservaForm.get('personas')?.value);
 
     // Escuchar cambios en el número de personas para filtrar mesas
     this.reservaForm.get('personas')?.valueChanges.subscribe(personas => {
@@ -104,7 +108,7 @@ export class ReservasPage implements OnInit {
   }
 
   incrementarPersonas() {
-    const personas = this.reservaForm.get('personas')?.value || 0;
+    const personas = this.reservaForm.get('personas')?.value || 2;
     if (personas < 8) {
       const nuevasPersonas = personas + 1;
       this.reservaForm.patchValue({ personas: nuevasPersonas });
@@ -114,12 +118,21 @@ export class ReservasPage implements OnInit {
   }
 
   decrementarPersonas() {
-    const personas = this.reservaForm.get('personas')?.value || 0;
+    const personas = this.reservaForm.get('personas')?.value || 2;
     if (personas > 1) {
       const nuevasPersonas = personas - 1;
       this.reservaForm.patchValue({ personas: nuevasPersonas });
       console.log(`👥 Decrementado a ${nuevasPersonas} personas`);
       this.filtrarMesasPorCapacidad(nuevasPersonas);
+    }
+  }
+
+  // Método adicional para establecer directamente el número de personas
+  establecerPersonas(numero: number) {
+    if (numero >= 1 && numero <= 8) {
+      this.reservaForm.patchValue({ personas: numero });
+      console.log(`👥 Establecido a ${numero} personas`);
+      this.filtrarMesasPorCapacidad(numero);
     }
   }
 

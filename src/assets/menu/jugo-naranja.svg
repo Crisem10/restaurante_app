@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <defs>
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#f0f0f0;stop-opacity:0.9" />
+    </linearGradient>
+    <linearGradient id="juiceGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFB347;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="#FAF8F3"/>
+  
+  <!-- Glass outline -->
+  <rect x="120" y="70" width="60" height="80" rx="5" fill="url(#glassGrad)" stroke="#ddd" stroke-width="2"/>
+  
+  <!-- Orange juice -->
+  <rect x="125" y="75" width="50" height="70" rx="3" fill="url(#juiceGrad)"/>
+  
+  <!-- Juice foam -->
+  <ellipse cx="150" cy="75" rx="22" ry="8" fill="#FFD700" opacity="0.6"/>
+  
+  <!-- Orange slices decoration -->
+  <circle cx="80" cy="60" r="20" fill="#FF8C00"/>
+  <path d="M60 60 L100 60 M80 40 L80 80 M70 50 L90 70 M90 50 L70 70" 
+        stroke="#FFF" stroke-width="2"/>
+  
+  <circle cx="220" cy="65" r="15" fill="#FF8C00"/>
+  <path d="M205 65 L235 65 M220 50 L220 80 M212 57 L228 73" 
+        stroke="#FFF" stroke-width="1.5"/>
+  
+  <!-- Straw -->
+  <rect x="155" y="45" width="4" height="40" fill="#FF6B47"/>
+  <rect x="155" y="85" width="4" height="15" fill="#FF6B47" opacity="0.7"/>
+  
+  <!-- Pulp effect -->
+  <circle cx="140" cy="90" r="2" fill="#FF8C00" opacity="0.8"/>
+  <circle cx="160" cy="100" r="1.5" fill="#FF8C00" opacity="0.8"/>
+  <circle cx="145" cy="110" r="1" fill="#FF8C00" opacity="0.8"/>
+  
+  <!-- Text -->
+  <text x="150" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2C2C2C">Jugo Natural Naranja</text>
+</svg>

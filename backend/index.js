@@ -37,6 +37,48 @@ app.use(morgan('dev'));
 // Servir archivos estáticos de imágenes
 app.use('/images', express.static(__dirname + '/public/images'));
 
+// RUTA PÚBLICA ESPECIAL PARA MESAS DISPONIBLES (antes de las rutas con middleware)
+// RUTA PÚBLICA ESPECIAL PARA MESAS DISPONIBLES (antes de las rutas con middleware)
+app.get('/api/mesas-publicas', async (req, res) => {
+  try {
+    console.log('🎯 RUTA PÚBLICA /api/mesas-publicas llamada');
+    const sequelize = require('./db');
+    
+    const [mesas] = await sequelize.query(`
+      SELECT id, numero, capacidad, estado 
+      FROM mesas 
+      WHERE estado = 'disponible' 
+      ORDER BY numero ASC
+    `);
+    
+    console.log(`📊 Mesas disponibles encontradas: ${mesas.length}`);
+    res.json(mesas);
+  } catch (error) {
+    console.error('❌ Error al obtener mesas disponibles:', error);
+    res.status(500).json({ error: 'Error al obtener mesas disponibles' });
+  }
+});
+
+app.get('/api/mesas/disponibles', async (req, res) => {
+  try {
+    console.log('🎯 RUTA PÚBLICA /api/mesas/disponibles llamada');
+    const sequelize = require('./db');
+    
+    const [mesas] = await sequelize.query(`
+      SELECT id, numero, capacidad, estado 
+      FROM mesas 
+      WHERE estado = 'disponible' 
+      ORDER BY numero ASC
+    `);
+    
+    console.log(`📊 Mesas disponibles encontradas: ${mesas.length}`);
+    res.json(mesas);
+  } catch (error) {
+    console.error('❌ Error al obtener mesas disponibles:', error);
+    res.status(500).json({ error: 'Error al obtener mesas disponibles' });
+  }
+});
+
 // Rutas con prefijo /api
 app.use('/api/usuarios', usuariosRoutes);
 app.use('/api/reservas', reservaRoutes);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, AnimationController } from '@ionic/angular';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -21,7 +21,8 @@ export class LoginPage {
   constructor(
     private api: ApiService,
     private alertController: AlertController,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private animationCtrl: AnimationController
   ) {}
 
   async login() {
@@ -52,8 +53,23 @@ export class LoginPage {
         if (res.token) {
           localStorage.setItem('token', res.token);
         }
-        // Redirigir a página principal directamente
-        this.navCtrl.navigateRoot('/home');
+        
+        // Crear animación de éxito
+        const successAnimation = this.animationCtrl
+          .create()
+          .addElement(document.querySelector('.login-form') as HTMLElement)
+          .duration(600)
+          .easing('ease-out')
+          .fromTo('transform', 'scale(1)', 'scale(1.05)')
+          .fromTo('opacity', '1', '0.8');
+
+        await successAnimation.play();
+        
+        // Redirigir a página principal con animación
+        this.navCtrl.navigateRoot('/home', {
+          animationDirection: 'forward',
+          animated: true
+        });
       },
       error: async (err) => {
         const alert = await this.alertController.create({

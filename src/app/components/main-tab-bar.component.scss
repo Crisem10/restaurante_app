@@ -8,26 +8,20 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  background: var(--color-white);
-  color: var(--color-black);
-  box-shadow: 0 -2px 24px 0 var(--color-lime);
+  background: var(--background-card);
+  color: var(--text-primary);
+  box-shadow: 0 -2px 24px 0 var(--menu-green-primary);
   padding: 0.7rem 0 0.3rem 0;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
+  border-top-left-radius: var(--border-radius);
+  border-top-right-radius: var(--border-radius);
   transition: background 0.2s, color 0.2s;
+  border-top: 2px solid var(--menu-green-light);
 }
 
-@media (prefers-color-scheme: dark) {
-  .main-tab-bar {
-    background: var(--color-black);
-    color: var(--color-white);
-    box-shadow: 0 -2px 24px 0 var(--color-lime);
-  }
-}
 .tab-btn {
   background: none;
   border: none;
-  color: var(--color-black);
+  color: var(--text-secondary);
   font-weight: 500;
   font-size: 1rem;
   display: flex;
@@ -39,26 +33,41 @@
   outline: none;
 }
 
-@media (prefers-color-scheme: dark) {
-  .tab-btn {
-    color: var(--color-white);
-  }
-}
 .tab-btn:focus, .tab-btn:hover {
-  color: #ffe600;
+  color: var(--menu-orange-primary);
 }
+
 .icon-svg {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #7ed321 60%, #ffe600 100%);
+  background: var(--primary-gradient);
   border-radius: 50%;
   width: 40px;
   height: 40px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  box-shadow: var(--shadow-primary);
   margin-bottom: 2px;
+  border: 2px solid var(--menu-green-light);
 }
+
 .tab-btn span:last-child {
   font-size: 0.95rem;
   margin-top: 2px;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+// Estado activo del botón
+.tab-btn.active {
+  color: var(--menu-orange-primary);
+  
+  .icon-svg {
+    background: var(--secondary-gradient);
+    border-color: var(--menu-orange-primary);
+  }
+  
+  span:last-child {
+    color: var(--menu-orange-primary);
+    font-weight: 600;
+  }
 }

@@ -1,16 +1,4 @@
 <!-- Página de reservas mejorada -->
-<ion-header class="ion-no-border">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/home" color="light"></ion-back-button>
-    </ion-buttons>
-    <ion-title class="title-center">
-      <ion-icon name="restaurant-outline" class="header-icon"></ion-icon>
-      Reservar Mesa
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="reservation-content">
   <!-- Hero Section -->
   <div class="hero-section">
@@ -58,6 +46,12 @@
             </ion-datetime>
           </ion-item>
         </div>
+        
+        <!-- Horario de atención -->
+        <div class="horario-atencion">
+          <ion-icon name="time-outline"></ion-icon>
+          <span><strong>Horario de atención:</strong> 9:00 AM - 11:00 PM</span>
+        </div>
       </div>
 
       <!-- Sección de Comensales -->
@@ -69,29 +63,41 @@
         
         <div class="personas-selector">
           <ion-label class="personas-label">Número de personas</ion-label>
+          
+          <!-- Controles principales -->
           <div class="personas-controls">
             <ion-button 
               fill="clear" 
-              size="small" 
+              size="large"
+              color="primary"
               (click)="decrementarPersonas()"
               [disabled]="reservaForm.get('personas')?.value <= 1">
-              <ion-icon name="remove-circle"></ion-icon>
+              <ion-icon name="remove-circle" size="large"></ion-icon>
             </ion-button>
             <span class="personas-count">{{ reservaForm.get('personas')?.value }}</span>
             <ion-button 
               fill="clear" 
-              size="small" 
+              size="large"
+              color="primary"
               (click)="incrementarPersonas()"
               [disabled]="reservaForm.get('personas')?.value >= 8">
-              <ion-icon name="add-circle"></ion-icon>
+              <ion-icon name="add-circle" size="large"></ion-icon>
             </ion-button>
           </div>
-          
-          <!-- Debug temporal -->
-          <div style="margin-top: 10px; padding: 8px; background: #f0f0f0; border-radius: 4px; font-size: 12px;">
-            <strong>Debug:</strong> Personas = {{ reservaForm.get('personas')?.value }} | 
-            Mesas filtradas = {{ mesasFiltradas.length }} | 
-            <ion-button fill="clear" size="small" (click)="debugFormulario()">🔍 Debug</ion-button>
+
+          <!-- Botones de acceso rápido -->
+          <div class="personas-quick-select">
+            <ion-label>Acceso rápido:</ion-label>
+            <div class="quick-buttons">
+              <ion-button 
+                *ngFor="let num of [1,2,3,4,5,6,7,8]"
+                size="small"
+                [fill]="reservaForm.get('personas')?.value === num ? 'solid' : 'outline'"
+                [color]="reservaForm.get('personas')?.value === num ? 'primary' : 'medium'"
+                (click)="establecerPersonas(num)">
+                {{ num }}
+              </ion-button>
+            </div>
           </div>
         </div>
       </div>
@@ -189,3 +195,5 @@
     </ion-card>
   </div>
 </ion-content>
+
+<main-tab-bar></main-tab-bar>

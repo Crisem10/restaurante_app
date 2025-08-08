@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <defs>
+    <linearGradient id="bunGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#D4A574;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8935A;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="meatGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8B4513;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#654321;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="#FAF8F3"/>
+  
+  <!-- Plate -->
+  <ellipse cx="150" cy="140" rx="130" ry="50" fill="#f8f8f8" stroke="#ddd" stroke-width="2"/>
+  
+  <!-- Hamburger bun top -->
+  <ellipse cx="150" cy="90" rx="50" ry="20" fill="url(#bunGrad)"/>
+  
+  <!-- Lettuce -->
+  <rect x="110" y="95" width="80" height="8" rx="4" fill="#7ED321"/>
+  
+  <!-- Tomato -->
+  <rect x="115" y="103" width="70" height="6" rx="3" fill="#FF6B47"/>
+  
+  <!-- Cheese -->
+  <rect x="120" y="109" width="60" height="5" rx="2" fill="#FFD700"/>
+  
+  <!-- Meat patty -->
+  <ellipse cx="150" cy="120" rx="45" ry="12" fill="url(#meatGrad)"/>
+  
+  <!-- Hamburger bun bottom -->
+  <ellipse cx="150" cy="135" rx="50" ry="15" fill="url(#bunGrad)"/>
+  
+  <!-- Fries -->
+  <rect x="210" y="120" width="4" height="25" fill="#FFD700"/>
+  <rect x="220" y="115" width="4" height="30" fill="#FFD700"/>
+  <rect x="230" y="125" width="4" height="20" fill="#FFD700"/>
+  <rect x="240" y="118" width="4" height="27" fill="#FFD700"/>
+  
+  <!-- Text -->
+  <text x="150" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2C2C2C">Hamburguesa Gourmet</text>
+</svg>

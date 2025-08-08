@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <defs>
+    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f8f8f8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e8e8e8;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="#FAF8F3"/>
+  
+  <!-- Saucer -->
+  <ellipse cx="150" cy="160" rx="60" ry="15" fill="url(#cupGrad)" stroke="#ddd" stroke-width="2"/>
+  
+  <!-- Coffee cup -->
+  <ellipse cx="150" cy="120" rx="40" ry="35" fill="url(#cupGrad)" stroke="#ddd" stroke-width="2"/>
+  
+  <!-- Coffee -->
+  <ellipse cx="150" cy="105" rx="35" ry="25" fill="#8B4513"/>
+  
+  <!-- Coffee foam -->
+  <ellipse cx="150" cy="100" rx="30" ry="15" fill="#DEB887" opacity="0.8"/>
+  
+  <!-- Handle -->
+  <path d="M190 120 Q200 115 205 125 Q200 135 190 130" 
+        stroke="#ddd" stroke-width="3" fill="none"/>
+  
+  <!-- Steam -->
+  <path d="M140 80 Q142 70 140 60" stroke="#ccc" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M150 80 Q152 70 150 60" stroke="#ccc" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M160 80 Q162 70 160 60" stroke="#ccc" stroke-width="2" fill="none" opacity="0.7"/>
+  
+  <!-- Coffee beans decoration -->
+  <ellipse cx="100" cy="50" rx="4" ry="3" fill="#654321"/>
+  <ellipse cx="200" cy="55" rx="4" ry="3" fill="#654321"/>
+  <ellipse cx="120" cy="40" rx="3" ry="2" fill="#654321"/>
+  
+  <!-- Text -->
+  <text x="150" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2C2C2C">Café Americano</text>
+</svg>

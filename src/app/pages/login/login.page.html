@@ -1,23 +1,27 @@
 <ion-content class="login-bg">
-  <div class="logo-container">
+  <div class="logo-container animate-slide-down">
     <div class="logo-circle">
       <img src="assets/icon/logo.png" alt="Logo Restaurante" class="logo-img">
     </div>
     <h1 class="lime-title">Restaurante App</h1>
   </div>
 
-  <div class="login-card">
+  <div class="login-card login-form animate-slide-up">
     <form (ngSubmit)="login()" #form="ngForm">
-      <ion-item class="input-item">
+      <ion-item class="input-item animate-fade-in" style="animation-delay: 0.3s;">
         <ion-label position="floating">Correo</ion-label>
         <ion-input [(ngModel)]="credenciales.correo" name="correo" type="email" required></ion-input>
       </ion-item>
-      <ion-item class="input-item">
+      <ion-item class="input-item animate-fade-in" style="animation-delay: 0.4s;">
         <ion-label position="floating">Contraseña</ion-label>
         <ion-input [(ngModel)]="credenciales.contrasena" name="contrasena" type="password" required></ion-input>
       </ion-item>
-      <ion-button expand="full" type="submit" [disabled]="!form.form.valid" class="lime-btn">Iniciar Sesión</ion-button>
-      <ion-button expand="full" fill="clear" routerLink="/register" class="link-btn">¿No tienes cuenta? Regístrate</ion-button>
+      <ion-button expand="full" type="submit" [disabled]="!form.form.valid" class="lime-btn animate-fade-in" style="animation-delay: 0.5s;">
+        Iniciar Sesión
+      </ion-button>
+      <ion-button expand="full" fill="clear" routerLink="/register" class="link-btn animate-fade-in" style="animation-delay: 0.6s;">
+        ¿No tienes cuenta? Regístrate
+      </ion-button>
     </form>
   </div>
 </ion-content>

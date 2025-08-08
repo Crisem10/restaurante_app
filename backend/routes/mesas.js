@@ -4,10 +4,38 @@ const Mesa = require('../models/mesa');
 const autenticarToken = require('../middleware/auth');
 const sequelize = require('../db');
 
-// Obtener solo las mesas disponibles (usando SQL directo para evitar problemas de modelo)
-router.get('/disponibles', autenticarToken, async (req, res) => {
+// RUTAS ESPECÍFICAS PRIMERO (antes de las rutas con parámetros dinámicos)
+
+// Obtener solo las mesas disponibles (RUTA PÚBLICA para reservas)
+router.get('/disponibles', async (req, res) => {
   try {
+    console.log('🎯 RUTA /disponibles llamada - SIN AUTENTICACIÓN');
     console.log('🔍 Obteniendo mesas disponibles con SQL directo...');
+    
+    // Usar SQL directo para evitar problemas con el modelo
+    const [mesas] = await sequelize.query(`
+      SELECT id, numero, capacidad, estado 
+      FROM mesas 
+      WHERE estado = 'disponible' 
+      ORDER BY numero ASC
+    `);
+    
+    console.log(`📊 Mesas disponibles encontradas: ${mesas.length}`);
+    mesas.forEach(mesa => {
+      console.log(`- Mesa ${mesa.numero}: ${mesa.capacidad} personas (ID: ${mesa.id})`);
+    });
+    
+    res.json(mesas);
+  } catch (error) {
+    console.error('❌ Error completo al obtener mesas disponibles:', error);
+    res.status(500).json({ error: 'Error al obtener mesas disponibles', details: error.message });
+  }
+});
+
+// Obtener solo las mesas disponibles (RUTA PROTEGIDA para admin)
+router.get('/disponibles/admin', autenticarToken, async (req, res) => {
+  try {
+    console.log('🔍 Obteniendo mesas disponibles (admin) con SQL directo...');
     
     // Usar SQL directo para evitar problemas con el modelo
     const [mesas] = await sequelize.query(`
@@ -39,6 +67,8 @@ router.get('/test', async (req, res) => {
     res.status(500).json({ error: 'Error en prueba' });
   }
 });
+
+// RUTAS GENERALES CON AUTENTICACIÓN
 
 // Obtener todas las mesas
 router.get('/', autenticarToken, async (req, res) => {

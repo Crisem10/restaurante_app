@@ -1,0 +1,316 @@
+// Variables de colores globales para la aplicación del restaurante
+// TEMA CLARO: Inspirado en el menú brunch BOCATA (fondo oscuro, dorados, naranjas)
+// TEMA OSCURO: Inspirado en el primer menú (verde lima, naranja, crema)
+
+:root {
+  // TEMA CLARO - Colores del menú brunch BOCATA
+  --menu-dark-bg: #2C2C2C;           // Fondo oscuro del menú brunch
+  --menu-gold-primary: #D4A574;      // Dorado principal para títulos
+  --menu-gold-secondary: #B8955C;    // Dorado secundario
+  --menu-orange-primary: #FF6B35;    // Naranja para elementos destacados
+  --menu-orange-secondary: #E55A2B;  // Naranja más oscuro
+  --menu-text-light: #F5F5F5;        // Texto claro principal
+  --menu-text-secondary: #CCCCCC;    // Texto secundario
+  --menu-accent-gold: #FFD700;       // Dorado brillante para acentos
+  --menu-white: #FFFFFF;
+  --menu-black: #1A1A1A;
+
+  // Gradientes temáticos para tema claro (brunch BOCATA)
+  --primary-gradient: linear-gradient(135deg, var(--menu-gold-primary) 0%, var(--menu-gold-secondary) 100%);
+  --secondary-gradient: linear-gradient(135deg, var(--menu-orange-primary) 0%, var(--menu-orange-secondary) 100%);
+  --accent-gradient: linear-gradient(135deg, rgba(212, 165, 116, 0.1) 0%, rgba(255, 107, 53, 0.1) 100%);
+  --dark-gradient: linear-gradient(135deg, var(--menu-dark-bg) 0%, #1A1A1A 100%);
+
+  // Colores de fondo para tema claro (estilo menú brunch)
+  --background-primary: var(--menu-dark-bg);
+  --background-card: #3A3A3A;
+  --background-item: rgba(212, 165, 116, 0.08);
+  --background-hero: var(--dark-gradient);
+  --background-selected: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(212, 165, 116, 0.05) 100%);
+  --background-input: #4A4A4A;
+
+  // Colores de texto para tema claro (blanco para mejor contraste)
+  --text-primary: #FFFFFF;
+  --text-secondary: #FFFFFF;
+  --text-accent: var(--menu-gold-primary);
+  --text-highlight: var(--menu-orange-primary);
+  --text-white: var(--menu-white);
+
+  // Colores de borde para tema claro (brunch BOCATA)
+  --border-primary: var(--menu-gold-primary);
+  --border-secondary: var(--menu-orange-primary);
+  --border-light: #555555;
+  --border-dark: #2A2A2A;
+  --border-color: rgba(212, 165, 116, 0.3);
+
+  // Sombras elegantes para tema claro
+  --shadow-primary: 0 4px 16px rgba(212, 165, 116, 0.3);
+  --shadow-secondary: 0 4px 16px rgba(255, 107, 53, 0.3);
+  --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.4);
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-gold: 0 0 20px rgba(212, 165, 116, 0.4);
+
+  // Radio de bordes
+  --border-radius: 12px;
+  --border-radius-small: 8px;
+  --border-radius-large: 16px;
+
+  // Ionic color overrides - tema dorado/naranja como el menú
+  --ion-color-primary: var(--menu-gold-primary);
+  --ion-color-primary-rgb: 212, 165, 116;
+  --ion-color-primary-contrast: #FFFFFF;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: var(--menu-gold-secondary);
+  --ion-color-primary-tint: #E0B888;
+
+  --ion-color-secondary: var(--menu-orange-primary);
+  --ion-color-secondary-rgb: 255, 107, 53;
+  --ion-color-secondary-contrast: #FFFFFF;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: var(--menu-orange-secondary);
+  --ion-color-secondary-tint: #FF7E5C;
+
+  // Variables de color de texto de Ionic para tema claro
+  --ion-text-color: #FFFFFF;
+  --ion-text-color-rgb: 255, 255, 255;
+  --ion-color-step-50: #FFFFFF;
+  --ion-color-step-100: #F0F0F0;
+  --ion-color-step-150: #E0E0E0;
+  --ion-color-step-200: #D0D0D0;
+  --ion-color-step-300: #B0B0B0;
+  --ion-color-step-400: #909090;
+  --ion-color-step-500: #707070;
+  --ion-color-step-600: #505050;
+  --ion-color-step-700: #404040;
+  --ion-color-step-800: #303030;
+  --ion-color-step-900: #202020;
+  --ion-color-step-950: #1A1A1A;
+
+  // Variables adicionales para compatibilidad (tema claro)
+  --menu-gold-light: #E8C99B;
+  --menu-orange-light: #FF8A65;
+  --icon-filter: brightness(0) invert(1);
+}
+
+// TEMA OSCURO - Colores del primer menú (verde lima, naranja) con fondo oscuro
+@media (prefers-color-scheme: dark) {
+  :root {
+    // Colores del primer menú para tema oscuro
+    --menu-green-primary: #7ED321;
+    --menu-green-secondary: #6BBE1A;
+    --menu-green-light: #A8E063;
+    
+    // Gradientes para tema oscuro (primer menú)
+    --primary-gradient: linear-gradient(135deg, var(--menu-green-primary) 0%, var(--menu-green-secondary) 100%);
+    --secondary-gradient: linear-gradient(135deg, var(--menu-orange-primary) 0%, var(--menu-orange-secondary) 100%);
+    
+    // Fondos tema oscuro (fondo oscuro mantenido)
+    --background-primary: #1A1A1A;
+    --background-card: #2A2A2A;
+    --background-item: rgba(126, 211, 33, 0.08);
+    --background-input: #333333;
+    
+    // Textos tema oscuro (colores claros y visibles para fondo oscuro)
+    --text-primary: #FFFFFF;
+    --text-secondary: #E0E0E0;
+    --text-accent: var(--menu-green-primary);
+    --text-highlight: var(--menu-orange-primary);
+    --text-white: #FFFFFF;
+    
+    // Bordes tema oscuro (primer menú)
+    --border-primary: var(--menu-green-primary);
+    --border-secondary: var(--menu-orange-primary);
+    --border-light: #444444;
+    --border-dark: #333333;
+    --border-color: rgba(126, 211, 33, 0.3);
+    
+    // Sombras tema oscuro (fondo oscuro)
+    --shadow-primary: 0 4px 16px rgba(126, 211, 33, 0.3);
+    --shadow-secondary: 0 4px 16px rgba(255, 107, 53, 0.3);
+    --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.4);
+    --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.2);
+    
+    // Iconos tema oscuro
+    --icon-filter: brightness(0) invert(1);
+    
+    // Ionic colors para tema oscuro (primer menú)
+    --ion-color-primary: var(--menu-green-primary);
+    --ion-color-primary-rgb: 126, 211, 33;
+    --ion-color-primary-contrast: #FFFFFF;
+    --ion-color-primary-contrast-rgb: 255, 255, 255;
+    --ion-color-primary-shade: var(--menu-green-secondary);
+    --ion-color-primary-tint: var(--menu-green-light);
+    
+    --ion-color-secondary: var(--menu-orange-primary);
+    --ion-color-secondary-rgb: 255, 107, 53;
+    --ion-color-secondary-contrast: #FFFFFF;
+    --ion-color-secondary-contrast-rgb: 255, 255, 255;
+    --ion-color-secondary-shade: var(--menu-orange-secondary);
+    --ion-color-secondary-tint: #FF8A65;
+
+    // Variables de color de texto de Ionic para tema oscuro
+    --ion-text-color: #FFFFFF;
+    --ion-text-color-rgb: 255, 255, 255;
+    --ion-color-step-50: #FFFFFF;
+    --ion-color-step-100: #F0F0F0;
+    --ion-color-step-150: #E0E0E0;
+    --ion-color-step-200: #D0D0D0;
+    --ion-color-step-300: #B0B0B0;
+    --ion-color-step-400: #909090;
+  }
+}
+
+// Clase para forzar tema oscuro (primer menú - verde lima con fondo oscuro)
+.dark {
+  // Colores del primer menú para clase .dark
+  --menu-green-primary: #7ED321;
+  --menu-green-secondary: #6BBE1A;
+  --menu-green-light: #A8E063;
+  
+  // Gradientes tema oscuro (primer menú)
+  --primary-gradient: linear-gradient(135deg, var(--menu-green-primary) 0%, var(--menu-green-secondary) 100%);
+  --secondary-gradient: linear-gradient(135deg, var(--menu-orange-primary) 0%, var(--menu-orange-secondary) 100%);
+  
+  // Fondos tema oscuro (fondo oscuro mantenido)
+  --background-primary: #1A1A1A;
+  --background-card: #2A2A2A;
+  --background-item: rgba(126, 211, 33, 0.08);
+  --background-input: #333333;
+  
+  // Textos tema oscuro (colores claros y visibles para fondo oscuro)
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --text-accent: var(--menu-green-primary);
+  --text-highlight: var(--menu-orange-primary);
+  --text-white: #FFFFFF;
+  
+  // Bordes tema oscuro (primer menú)
+  --border-primary: var(--menu-green-primary);
+  --border-secondary: var(--menu-orange-primary);
+  --border-light: #444444;
+  --border-dark: #333333;
+  --border-color: rgba(126, 211, 33, 0.3);
+  
+  // Sombras tema oscuro (fondo oscuro)
+  --shadow-primary: 0 4px 16px rgba(126, 211, 33, 0.3);
+  --shadow-secondary: 0 4px 16px rgba(255, 107, 53, 0.3);
+  --shadow-card: 0 4px 15px rgba(0, 0, 0, 0.4);
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --icon-filter: brightness(0) invert(1);
+  
+  // Ionic colors para tema oscuro
+  --ion-color-primary: var(--menu-green-primary);
+  --ion-color-primary-rgb: 126, 211, 33;
+  --ion-color-primary-contrast: #FFFFFF;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: var(--menu-green-secondary);
+  --ion-color-primary-tint: var(--menu-green-light);
+
+  // Variables de color de texto de Ionic para clase .dark
+  --ion-text-color: #FFFFFF;
+  --ion-text-color-rgb: 255, 255, 255;
+  --ion-color-step-50: #FFFFFF;
+  --ion-color-step-100: #F0F0F0;
+}
+
+// Clases de utilidad para ambos temas
+// Tema claro (brunch BOCATA)
+.menu-gold { color: var(--menu-gold-primary) !important; }
+.menu-orange { color: var(--menu-orange-primary) !important; }
+.menu-text-light { color: var(--menu-text-light) !important; }
+.menu-accent { color: var(--menu-accent-gold) !important; }
+
+.bg-menu-dark { background: var(--menu-dark-bg) !important; }
+.bg-menu-gold { background: var(--menu-gold-primary) !important; }
+.bg-menu-orange { background: var(--menu-orange-primary) !important; }
+
+// Tema oscuro (primer menú)
+.menu-green { color: var(--menu-green-primary) !important; }
+.menu-cream { color: var(--menu-cream-bg) !important; }
+.bg-menu-green { background: var(--menu-green-primary) !important; }
+.bg-menu-cream { background: var(--menu-cream-bg) !important; }
+
+// Bordes para ambos temas
+.border-menu-gold { border-color: var(--menu-gold-primary) !important; }
+.border-menu-orange { border-color: var(--menu-orange-primary) !important; }
+.border-menu-green { border-color: var(--menu-green-primary) !important; }
+
+// Efectos especiales para títulos
+.title-brunch {
+  color: var(--menu-accent-gold);
+  text-shadow: 0 0 10px rgba(212, 165, 116, 0.5);
+  font-weight: 700;
+}
+
+.subtitle-brunch {
+  color: var(--menu-orange-primary);
+  font-weight: 600;
+}
+
+.title-green {
+  color: var(--menu-green-primary);
+  text-shadow: 0 0 10px rgba(126, 211, 33, 0.5);
+  font-weight: 700;
+}
+
+// Estilos globales para forzar texto blanco en ambos temas
+ion-content, ion-item, ion-label, ion-text, p, h1, h2, h3, h4, h5, h6, span, div {
+  color: var(--text-primary) !important;
+}
+
+ion-title {
+  color: var(--text-primary) !important;
+}
+
+ion-card {
+  color: var(--text-primary) !important;
+  background: var(--background-card) !important;
+}
+
+ion-card-content {
+  color: var(--text-primary) !important;
+}
+
+ion-list {
+  background: transparent !important;
+}
+
+ion-item {
+  --background: var(--background-card) !important;
+  --color: var(--text-primary) !important;
+  --border-color: var(--border-light) !important;
+}
+
+ion-button {
+  --color: var(--text-primary) !important;
+}
+
+// Estilos para componentes ion-datetime
+ion-datetime {
+  --color: var(--text-primary) !important;
+  --placeholder-color: var(--text-secondary) !important;
+  --background: var(--background-input) !important;
+  
+  .datetime-text {
+    color: var(--text-primary) !important;
+  }
+  
+  .datetime-placeholder {
+    color: var(--text-secondary) !important;
+  }
+}
+
+// Estilos para el picker/modal de datetime
+ion-picker {
+  --background: var(--background-card) !important;
+  --color: var(--text-primary) !important;
+}
+
+ion-picker-column {
+  --color: var(--text-primary) !important;
+}
+
+ion-modal {
+  --background: var(--background-card) !important;
+  --color: var(--text-primary) !important;
+}

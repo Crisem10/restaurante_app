@@ -5,11 +5,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MainTabBarComponent } from '../../components/main-tab-bar.component';
 
 @Component({
   selector: 'app-pago',
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule, MainTabBarComponent],
   templateUrl: './pago.page.html',
   styleUrls: ['./pago.page.scss']
 })

@@ -1,36 +1,81 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Menú</ion-title>
+    <ion-title class="title-center">
+      <ion-icon name="restaurant-outline" class="header-icon"></ion-icon>
+      Nuestro Menú
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-spinner *ngIf="loading" name="crescent" class="spinner-center"></ion-spinner>
+<ion-content class="menu-content">
+  <!-- Loading spinner -->
+  <div *ngIf="loading" class="loading-container">
+    <ion-spinner name="crescent" class="loading-spinner"></ion-spinner>
+    <p class="loading-text">Cargando nuestro delicioso menú...</p>
+  </div>
 
-  <ion-list *ngIf="!loading && menuItems.length > 0; else noMenu">
-    <ion-card *ngFor="let item of menuItems">
-      <img *ngIf="item.imagen" [src]="item.imagen" alt="{{ item.nombre_plato }}" style="width:100%;height:200px;object-fit:cover;" />
-      <ion-card-header>
-        <ion-card-title>{{ item.nombre_plato }}</ion-card-title>
-        <ion-card-subtitle>{{ item.categoria }}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{ item.descripcion }}</p>
-        <p><strong>Precio:</strong> ${{ item.precio }}</p>
-        <ion-button expand="block" color="success">Agregar al carrito</ion-button>
+  <!-- Categories filter -->
+  <div *ngIf="!loading && menuItems.length > 0" class="categories-filter">
+    <ion-chip 
+      *ngFor="let categoria of categorias" 
+      [color]="categoriaSeleccionada === categoria ? 'primary' : 'medium'"
+      (click)="filtrarPorCategoria(categoria)"
+      class="category-chip">
+      {{ categoria }}
+    </ion-chip>
+  </div>
+
+  <!-- Menu items grid -->
+  <div *ngIf="!loading && itemsFiltrados.length > 0" class="menu-grid">
+    <ion-card *ngFor="let item of itemsFiltrados" class="menu-card" (click)="verDetalleItem(item)">
+      <!-- Image container -->
+      <div class="image-container">
+        <img [src]="item.imagen" [alt]="item.nombre" class="menu-image" />
+        <div class="price-badge">
+          <span class="price-text">${{ item.precio }}</span>
+        </div>
+        <div *ngIf="!item.disponible" class="unavailable-overlay">
+          <span>No disponible</span>
+        </div>
+      </div>
+      
+      <!-- Card content -->
+      <ion-card-content class="menu-card-content">
+        <h3 class="item-name">{{ item.nombre }}</h3>
+        <p class="item-description">{{ item.descripcion }}</p>
+        
+        <div class="item-details">
+          <div class="prep-time">
+            <ion-icon name="time-outline"></ion-icon>
+            <span>{{ item.tiempo_preparacion }} min</span>
+          </div>
+          <div class="category-tag">
+            <ion-icon name="pricetag-outline"></ion-icon>
+            <span>{{ item.categoria }}</span>
+          </div>
+        </div>
       </ion-card-content>
     </ion-card>
-  </ion-list>
+  </div>
 
-  <ng-template #noMenu>
+  <!-- No menu template -->
+  <div *ngIf="!loading && itemsFiltrados.length === 0" class="no-menu">
+    <ion-icon name="restaurant-outline" class="no-menu-icon"></ion-icon>
+    <h3>Sin elementos en esta categoría</h3>
     <p *ngIf="errorMessage">{{ errorMessage }}</p>
-    <p *ngIf="!errorMessage">No hay items en el menú.</p>
-  </ng-template>
+    <p *ngIf="!errorMessage && categoriaSeleccionada !== 'Todos'">
+      No hay platos disponibles en la categoría "{{ categoriaSeleccionada }}"
+    </p>
+    <p *ngIf="!errorMessage && categoriaSeleccionada === 'Todos'">
+      No hay items en el menú disponibles actualmente.
+    </p>
+    <ion-button 
+      *ngIf="categoriaSeleccionada !== 'Todos'" 
+      fill="outline" 
+      (click)="filtrarPorCategoria('Todos')">
+      Ver todos los platos
+    </ion-button>
+  </div>
 </ion-content>
 
-<style>
-  .spinner-center {
-    display: block;
-    margin: 50% auto;
-  }
-</style>
+<main-tab-bar></main-tab-bar>

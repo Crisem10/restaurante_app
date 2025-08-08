@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Servir aplicación con nuevo diseño",
+			"type": "shell",
+			"command": "ionic serve",
+			"isBackground": true,
+			"group": "build",
+			"problemMatcher": [],
+			"args": []
+		}
+	]
+}

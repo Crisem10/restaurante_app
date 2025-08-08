@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" viewBox="0 0 300 200">
+  <defs>
+    <linearGradient id="salmonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFA07A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FA8072;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="300" height="200" fill="#FAF8F3"/>
+  
+  <!-- Plate -->
+  <ellipse cx="150" cy="140" rx="120" ry="40" fill="#f8f8f8" stroke="#ddd" stroke-width="2"/>
+  
+  <!-- Salmon fillet -->
+  <ellipse cx="150" cy="120" rx="60" ry="25" fill="url(#salmonGrad)"/>
+  <!-- Grill marks -->
+  <line x1="120" y1="115" x2="180" y2="115" stroke="#8B4513" stroke-width="2"/>
+  <line x1="120" y1="125" x2="180" y2="125" stroke="#8B4513" stroke-width="2"/>
+  
+  <!-- Vegetables -->
+  <!-- Broccoli -->
+  <circle cx="220" cy="125" r="8" fill="#7ED321"/>
+  <circle cx="225" cy="135" r="6" fill="#7ED321"/>
+  <circle cx="215" cy="135" r="7" fill="#7ED321"/>
+  
+  <!-- Carrots -->
+  <rect x="80" y="130" width="15" height="4" rx="2" fill="#FF8C00"/>
+  <rect x="85" y="125" width="12" height="4" rx="2" fill="#FF8C00"/>
+  
+  <!-- Asparagus -->
+  <rect x="190" y="115" width="3" height="20" fill="#9ACD32"/>
+  <rect x="195" y="118" width="3" height="17" fill="#9ACD32"/>
+  <rect x="200" y="120" width="3" height="15" fill="#9ACD32"/>
+  
+  <!-- Lemon wedge -->
+  <path d="M110 110 Q115 105 120 110 Q115 115 110 110" fill="#FFD700"/>
+  <line x1="110" y1="110" x2="120" y2="110" stroke="#FFF" stroke-width="1"/>
+  
+  <!-- Text -->
+  <text x="150" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#2C2C2C">Salmón a la Plancha</text>
+</svg>

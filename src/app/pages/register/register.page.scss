@@ -1,11 +1,12 @@
 .login-bg {
-  background: var(--color-white);
+  background: var(--background-primary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
 }
+
 .logo-container {
   width: 100%;
   display: flex;
@@ -14,6 +15,7 @@
   margin-top: 48px;
   margin-bottom: 18px;
 }
+
 .logo-circle {
   background: transparent;
   border-radius: 50%;
@@ -22,8 +24,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;
-  border: 3px solid var(--color-lime);
+  box-shadow: var(--shadow-primary);
+  border: 3px solid var(--menu-green-primary);
   animation: logoFadeIn 1s cubic-bezier(.5,1.5,.5,1) 0.1s both;
 }
 @keyframes logoFadeIn {
